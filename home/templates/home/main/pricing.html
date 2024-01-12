@@ -1,0 +1,34 @@
+{% load wagtailcore_tags %}
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+            <h2>{{ page.pricing_title }}</h2>
+            {{ page.pricing_subtitle | richtext }}
+          </div>
+  
+          <div class="row">
+
+            {% for item in page.pricing %}
+  
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="box {{ item.value.featured_box }}">
+                <h3>{{ item.value.plan }}</h3>
+                <h4><sup>{{ item.value.currency }}</sup>{{ item.value.price }}<span>{{ item.value.duration }}</span></h4>
+                <ul>
+                  {% for feature in item.value.features   %}
+                  <li class="{{ feature.na_feature }}"><i class="bx bx-check"></i>{{ feature.feature }}</li>
+                  {% endfor %}
+                </ul>
+                <a href="{{ item.value.button_url }}" class="buy-btn">{{ item.value.button_name }}</a>
+              </div>
+            </div>
+
+            {% endfor %}
+  
+          </div>
+  
+        </div>
+      </section><!-- End Pricing Section -->

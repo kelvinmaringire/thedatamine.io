@@ -1,0 +1,43 @@
+{% load custom_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+            <h2>{{ page.portfolio_title }}</h2>
+            <p>{{ page.portfolio_subtitle }}</p>
+          </div>
+  
+          <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            {% for item in page.portfolio|unique_categories %}
+              <li data-filter=".filter-{{ item|lower }}">{{ item }}</li>
+            {% endfor %}
+          </ul>
+  
+          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+            {% for item in page.portfolio %}
+
+            {% image item.value.image original as portfolio_img %}
+  
+              <div class="col-lg-4 col-md-6 portfolio-item filter-{{ item.value.category | lower }}">
+                <div class="portfolio-img"><img src="{{ portfolio_img.url }}" class="img-fluid" alt="{{ portfolio_img.alt }}"></div>
+                <div class="portfolio-info">
+                  <h4>{{ item.value.title }}</h4>
+                  <p>{{ item.value.category }}</p>
+                  <a href="{{ portfolio_img.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{ item.value.title }}"><i class="bx bx-plus"></i></a>
+                  {% if item.value.details_url  %}
+                    <a href="{{ item.value.details_url }}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                  {% endif %}  
+                </div>
+              </div>
+
+            {% endfor %}
+  
+          </div>
+  
+        </div>
+      </section><!-- End Portfolio Section -->

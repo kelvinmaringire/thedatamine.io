@@ -1,0 +1,37 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% image page.logo original as logo_img %}
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">
+        <a href="index.html" class="logo me-auto"><img src="{{ logo_img.url }}" alt="{{ logo_img.alt }}" class="img-fluid"></a></a>
+      </h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          {% for item in self.navigation %}
+              {% with navigation_item=item.value %}
+                  {% if navigation_item.show %}
+                      <li><a class="nav-link scrollto {% if forloop.first %}active{% endif %}" href="{{ navigation_item.href }}">{{ navigation_item.title }}</a></li>
+                  {% endif %}
+              {% endwith %}
+          {% endfor %}
+          {% if request.user.is_authenticated %}
+          <li><a class="getstarted scrollto" href="{% url 'wagtailadmin_home' %}">Welcome, {{request.user.username | title}}</a></li>
+          {% else %}
+              <li><a class="getstarted scrollto" href="{% url 'wagtailadmin_login' %}">Login</a></li>
+          {% endif %}
+      </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+
+    </div>
+  </header><!-- End Header -->
+
+  

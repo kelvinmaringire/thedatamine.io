@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+
+{% block content %}
+
+{% include 'home/header.html' %}
+
+{% include 'home/hero_section.html' %}
+
+  <main id="main">
+
+    {% include 'home/main/clients_section.html' %}
+
+    {% include 'home/main/about_us.html' %}
+
+    {% include 'home/main/why_us.html' %}
+
+    {% include 'home/main/skills.html' %}
+
+    {% include 'home/main/services.html' %}
+
+    {% include 'home/main/features.html' %}
+
+    {% include 'home/main/cta.html' %}
+
+    {% include 'home/main/portfolio.html' %}
+
+    {% include 'home/main/team.html' %}
+
+    {% include 'home/main/pricing.html' %}
+
+    {% include 'home/main/faqs.html' %}
+
+    {% include 'home/main/contact.html' %}
+
+  </main><!-- End #main -->
+
+  {% include 'home/footer.html' %}
+
+{% endblock content %}

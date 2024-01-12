@@ -1,0 +1,24 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+  
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    {% image self.hero_image original as hero_img %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>{{ page.hero_title }}</h1>
+          <h2>{{ page.hero_subtitle | richtext }}</h2>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a href="{{page.hero_button_page.url}}" class="btn-get-started scrollto">{{page.hero_button_page_title}}</a>
+            <a href="{{page.hero_button_url}}" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>{{page.hero_button_url_title}}</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="{{ hero_img.url }}" class="img-fluid animated" alt="{{ hero_img.alt }}">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->

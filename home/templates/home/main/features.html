@@ -1,0 +1,57 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+   
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>{{ page.features_title }}</h2>
+                <p>{{ page.features_subtitle | richtext }}</p>
+              </div>            
+  
+          <ul class="nav nav-tabs row gy-4 d-flex">
+
+
+            {% for item in page.features %}
+              <li class="nav-item col-6 col-md-4 col-lg-2">
+                <a class="nav-link{% if forloop.first %} active show{% endif %}" data-bs-toggle="tab" data-bs-target="#tab-{{ forloop.counter }}">
+                  <i class="{{ item.value.icon }}"></i>
+                  <h4>{{ item.value.title }}</h4>
+                </a>
+              </li><!-- End Tab {{ forloop.counter }} Nav -->
+            {% endfor %}            
+    
+          </ul>
+  
+          <div class="tab-content">
+
+            {% for item in page.features %}
+            {% image item.value.image original as feature_img %}
+            <div class="tab-pane{% if forloop.first %} active show{% endif %}" id="tab-{{ forloop.counter }}">
+              <div class="row gy-4">
+                <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+                  <h3>{{ item.value.title }}</h3>
+                  <p>{{ item.value.subtitle | richtext }}</p>
+                  {% if item.value.ul_list %}
+                  <ul>
+                    {% for li_item in item.value.ul_list %}
+                      <li><i class="bi bi-check-circle-fill"></i>{{li_item}}</li>
+                    {% endfor %}
+                  </ul>  
+                  {% endif %}
+                </div>
+                <div class="col-lg-4 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                  {% if item.value.image %}
+                    <img src="{{ feature_img.url }}" alt="{{ feature_img.alt }}" class="img-fluid">
+                  {% endif %}
+                </div>
+              </div>
+            </div><!-- End Tab Content {{ forloop.counter }} -->
+          {% endfor %}            
+  
+          </div>
+  
+        </div>
+      </section><!-- End Features Section -->

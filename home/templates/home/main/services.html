@@ -1,0 +1,27 @@
+{% load wagtailcore_tags %}
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+            <h2>{{ page.services_title }}</h2>
+            <p>{{ page.services_subtitle | richtext }}</p>
+          </div>
+  
+          <div class="row">
+
+            {% for item in page.services%}
+              <div class="col-xl-3 col-md-6 d-flex align-items-stretch my-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="icon-box">
+                  <div class="icon"><i class="{{ item.value.icon }}"></i></div>
+                  <h4><a href="">{{ item.value.title }}</a></h4>
+                  <p>{{ item.value.subtitle | richtext }}</p>
+                </div>
+              </div>
+            {% endfor %}
+  
+          </div>
+  
+        </div>
+      </section><!-- End Services Section -->
